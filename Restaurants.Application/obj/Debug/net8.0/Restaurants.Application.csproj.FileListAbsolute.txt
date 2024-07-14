@@ -13,3 +13,4 @@ D:\Courses\Asp8Api\Restaurants.Application\obj\Debug\net8.0\Restaurants.Applicat
 D:\Courses\Asp8Api\Restaurants.Application\obj\Debug\net8.0\refint\Restaurants.Application.dll
 D:\Courses\Asp8Api\Restaurants.Application\obj\Debug\net8.0\Restaurants.Application.pdb
 D:\Courses\Asp8Api\Restaurants.Application\obj\Debug\net8.0\ref\Restaurants.Application.dll
+D:\Courses\Asp8Api\Restaurants.Application\obj\Debug\net8.0\Restaurants.Application.sourcelink.json

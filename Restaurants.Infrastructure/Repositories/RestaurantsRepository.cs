@@ -36,4 +36,34 @@ internal class RestaurantsRepository : IRestaurantsRepositoy
         await _dbContext.SaveChangesAsync();
         return restaurant.Id;
     }
+
+    public async Task<Restaurant?> Delete(Guid guid)
+    {
+        var restaurant = await _dbContext.Restaurants.FirstOrDefaultAsync(res => res.Id == guid);
+        if (restaurant == null)
+            return null;
+
+        _dbContext.Restaurants.Remove(restaurant);
+
+        await _dbContext.SaveChangesAsync();
+        return restaurant;
+    }
+
+    public async Task<Restaurant?> Update(Restaurant restaurant)
+    {
+        var restaurantToUpdate = await _dbContext.Restaurants.FirstOrDefaultAsync(res => res.Id == restaurant.Id);
+        if (restaurantToUpdate == null)
+            return null;
+
+        restaurantToUpdate.Name = restaurant.Name;
+        restaurantToUpdate.Description = restaurant.Description;
+        restaurantToUpdate.Category = restaurant.Category;
+        restaurant.HasDelivery = restaurant.HasDelivery;
+        restaurant.ContactEmail = restaurant.ContactEmail;
+        restaurant.ContactNumber = restaurant.ContactNumber;
+        restaurantToUpdate.Address = restaurant.Address;
+
+        await _dbContext.SaveChangesAsync();
+        return restaurantToUpdate;
+    }
 }

@@ -1,0 +1,39 @@
+2024-07-13 23:58:53.980 -06:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2024-07-13 23:58:54.031 -06:00 [WRN] The entity type 'Address' is an optional dependent using table sharing without any required non shared property that could be used to identify whether the entity exists. If all nullable properties contain a null value in database then an object instance won't be created in the query. Add a required property to create instances with null values for other properties or mark the incoming navigation as required to always create an instance.
+2024-07-13 23:58:54.037 -06:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Dish'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-07-13 23:58:54.999 -06:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-07-13 23:58:55.125 -06:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Restaurants] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-07-13 23:59:12.976 -06:00 [INF] Fetching restaurant with guid "88ac48f4-2e6a-4896-d22b-08dca2201345"
+2024-07-13 23:59:13.112 -06:00 [INF] Executed DbCommand (26ms) [Parameters=[@__restaurantGuid_0='88ac48f4-2e6a-4896-d22b-08dca2201345'], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Category], [t].[ContactEmail], [t].[ContactNumber], [t].[Description], [t].[HasDelivery], [t].[Name], [t].[Address_City], [t].[Address_PostalCode], [t].[Address_Street], [d].[Id], [d].[Description], [d].[KiloCalories], [d].[Name], [d].[Price], [d].[RestaurantId]
+FROM (
+    SELECT TOP(1) [r].[Id], [r].[Category], [r].[ContactEmail], [r].[ContactNumber], [r].[Description], [r].[HasDelivery], [r].[Name], [r].[Address_City], [r].[Address_PostalCode], [r].[Address_Street]
+    FROM [Restaurants] AS [r]
+    WHERE [r].[Id] = @__restaurantGuid_0
+) AS [t]
+LEFT JOIN [Dishes] AS [d] ON [t].[Id] = [d].[RestaurantId]
+ORDER BY [t].[Id]
+2024-07-13 23:59:13.157 -06:00 [INF] HTTP GET /api/restaurants/88ac48f4-2e6a-4896-d22b-08dca2201345 responded 404 in 272.0223 ms
+2024-07-13 23:59:20.718 -06:00 [INF] Fetching all restaurants
+2024-07-13 23:59:20.754 -06:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [r].[Id], [r].[Category], [r].[ContactEmail], [r].[ContactNumber], [r].[Description], [r].[HasDelivery], [r].[Name], [r].[Address_City], [r].[Address_PostalCode], [r].[Address_Street]
+FROM [Restaurants] AS [r]
+2024-07-13 23:59:20.808 -06:00 [INF] HTTP GET /api/restaurants responded 200 in 94.7730 ms
+2024-07-13 23:59:31.807 -06:00 [INF] Fetching restaurant with guid "ae71aed5-b257-4cda-5b96-08dca220c734"
+2024-07-13 23:59:31.812 -06:00 [INF] Executed DbCommand (2ms) [Parameters=[@__restaurantGuid_0='ae71aed5-b257-4cda-5b96-08dca220c734'], CommandType='"Text"', CommandTimeout='30']
+SELECT [t].[Id], [t].[Category], [t].[ContactEmail], [t].[ContactNumber], [t].[Description], [t].[HasDelivery], [t].[Name], [t].[Address_City], [t].[Address_PostalCode], [t].[Address_Street], [d].[Id], [d].[Description], [d].[KiloCalories], [d].[Name], [d].[Price], [d].[RestaurantId]
+FROM (
+    SELECT TOP(1) [r].[Id], [r].[Category], [r].[ContactEmail], [r].[ContactNumber], [r].[Description], [r].[HasDelivery], [r].[Name], [r].[Address_City], [r].[Address_PostalCode], [r].[Address_Street]
+    FROM [Restaurants] AS [r]
+    WHERE [r].[Id] = @__restaurantGuid_0
+) AS [t]
+LEFT JOIN [Dishes] AS [d] ON [t].[Id] = [d].[RestaurantId]
+ORDER BY [t].[Id]
+2024-07-13 23:59:31.818 -06:00 [INF] HTTP GET /api/restaurants/ae71aed5-b257-4cda-5b96-08dca220c734 responded 200 in 12.8788 ms

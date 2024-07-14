@@ -15,7 +15,11 @@ public static class ServiceCollectionExtensions
     {
         var dbConnectionString = configuration.GetConnectionString("RestaurantsDb");
 
-        services.AddDbContext<RestaurantsDbContext>(options => options.UseSqlServer(dbConnectionString));
+        services.AddDbContext<RestaurantsDbContext>(options =>
+            options
+                .UseSqlServer(dbConnectionString)
+                .EnableSensitiveDataLogging()
+        );
         services.AddScoped<IRestaurantSeeder, RestaurantSeeder>();
         services.AddScoped<IRestaurantsRepositoy, RestaurantsRepository>();
     }
