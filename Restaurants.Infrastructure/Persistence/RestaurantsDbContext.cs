@@ -1,10 +1,11 @@
 ﻿
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Restaurants.Domain.Entities;
 
 namespace Restaurants.Infrastructure.Persistence;
 
-internal class RestaurantsDbContext : DbContext
+internal class RestaurantsDbContext : IdentityDbContext<User>
 {
     internal DbSet<Restaurant> Restaurants { get; set; }
     internal DbSet<Dish> Dishes { get; set; }
@@ -16,6 +17,8 @@ internal class RestaurantsDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Restaurant>()
             .OwnsOne(m => m.Address);
 

@@ -1,14 +1,16 @@
 @host = https://localhost
 @port = 7295
+@token = CfDJ8JWRgDF-IUFOr3yf65VqxggdBhL4l3dyhqD15Dd8o68OmN8-8B6Bmo91s5MMuzUuifWZfMmtthkiJrMQ7PEerF05ASbrqOqEYDry7GkpWcI26FGA1FQMUxsPzxhXLMTqQ8Yvc6SRyoRaP5O7d82TOSx50-miql-o0393JfE6ZFbLbrvN8LKtf4RV35B7X27mmNif18t9uWGCSXCjH048hdsAPa2BpGqSJUJNyN3Ej_L271ogmlUf1AXKy09tpyy0FwX78hi5wAS0UGpT1M6Zakn5uLH5iEwI9XPuhY3DiQ_KYYmdm-shKjhdDxBGHY1KFIxAZ2yFNZN_CX70Kd9becVv3dP6rV9QzKy2VRNTjmKJkYRWtaxIBdhEkdrN659hlfXMJ12_IhvppO8CmvtEplAfvx_8vdezLiiI6FNVyGi7xm2jTcL_TBJ8aBVlse1UgfvHXcFX-ZML22M6SCmjjC4lvZQvLUhitGZIf234HMboDspAik3htiUGx0iR-gGiModQtDemtEefVaP3glGkpQKSKN4x_jcmYsUXd3mj30tG9afHQb88SAAqxzxJ_bmNTlSRsueCBoiTva5YbPLNR7ZYOSRhIpli0gmXe2VGSX1ByvrsSwz-IuJU9SCC7AcfJDazpzWaBHs9BogSDDKvDusll1e2ZSCJAvY--g3E5WtbH4vKtDW9ndGvnAs9KzQeJw
 
 @Restaurant_API_Address= {{host}}:{{port}}
 
 GET {{Restaurant_API_Address}}/api/restaurants
+Authorization: Bearer {{token}}
 Accept: application/json
 
 ###
   
-GET {{Restaurant_API_Address}}/api/restaurants/ae71aed5-b257-4cda-5b96-08dca220c735
+GET {{Restaurant_API_Address}}/api/restaurants/bf6fde4f-7cfb-4505-5b97-08dca220c734
 Accept: application/json
 
 ###
@@ -59,4 +61,47 @@ Content-Type: application/json
     "Street": "123 Sample Street",
     "PostalCode": "12345"
 }
+
+###
+
+POST {{Restaurant_API_Address}}/api/restaurants/bf6fde4f-7cfb-4505-5b97-08dca220c734/dishes
+Content-Type: application/json
+
+{
+  "name": "Taco de tripas",
+  "description": "Puede ser doradita o blandita",
+  "price": 25,
+  "kiloCalories": 300
+}
+
+###
+
+GET {{Restaurant_API_Address}}/api/restaurants/bf6fde4f-7cfb-4505-5b97-08dca220c734/dishes
+
+###
+
+DELETE {{Restaurant_API_Address}}/api/restarurants/bf6fde4f-7cfb-4505-5b97-08dca220c734/dishes/7
+
+###
+
+DELETE {{Restaurant_API_Address}}/api/restaurants/bf6fde4f-7cfb-4505-5b97-08dca220c734/dishes/8
+
+###
+POST {{Restaurant_API_Address}}/api/identity/register
+Content-Type: application/json
+
+{
+  "email": "temo@gmail.com",
+  "password": "Donadona21."
+}
+
+###
+POST {{Restaurant_API_Address}}/api/identity/login
+Content-Type: application/json
+
+{
+  "email": "temo@gmail.com",
+  "password": "Donadona21."
+}
+
 

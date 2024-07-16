@@ -1,7 +1,7 @@
 ﻿
 using AutoMapper;
-using Restaurants.Application.Restaurants.Commands.CretateRestaurant;
-using Restaurants.Application.Restaurants.Commands.UpdateRestaurant;
+using Restaurants.Application.Areas.Restaurants.Commands.CretateRestaurant;
+using Restaurants.Application.Areas.Restaurants.Commands.UpdateRestaurant;
 using Restaurants.Domain.Entities;
 
 namespace Restaurants.Application.Definitions.Profiles;

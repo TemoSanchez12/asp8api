@@ -8,4 +8,5 @@ public class DishDefinition
     public decimal Price { get; set; }
     public int? KiloCalories { get; set; }
 
+    public Guid RestaurantId { get; set; }
 }
