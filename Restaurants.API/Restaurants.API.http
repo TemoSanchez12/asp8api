@@ -1,6 +1,6 @@
 @host = https://localhost
 @port = 7295
-@token = CfDJ8JWRgDF-IUFOr3yf65VqxggdBhL4l3dyhqD15Dd8o68OmN8-8B6Bmo91s5MMuzUuifWZfMmtthkiJrMQ7PEerF05ASbrqOqEYDry7GkpWcI26FGA1FQMUxsPzxhXLMTqQ8Yvc6SRyoRaP5O7d82TOSx50-miql-o0393JfE6ZFbLbrvN8LKtf4RV35B7X27mmNif18t9uWGCSXCjH048hdsAPa2BpGqSJUJNyN3Ej_L271ogmlUf1AXKy09tpyy0FwX78hi5wAS0UGpT1M6Zakn5uLH5iEwI9XPuhY3DiQ_KYYmdm-shKjhdDxBGHY1KFIxAZ2yFNZN_CX70Kd9becVv3dP6rV9QzKy2VRNTjmKJkYRWtaxIBdhEkdrN659hlfXMJ12_IhvppO8CmvtEplAfvx_8vdezLiiI6FNVyGi7xm2jTcL_TBJ8aBVlse1UgfvHXcFX-ZML22M6SCmjjC4lvZQvLUhitGZIf234HMboDspAik3htiUGx0iR-gGiModQtDemtEefVaP3glGkpQKSKN4x_jcmYsUXd3mj30tG9afHQb88SAAqxzxJ_bmNTlSRsueCBoiTva5YbPLNR7ZYOSRhIpli0gmXe2VGSX1ByvrsSwz-IuJU9SCC7AcfJDazpzWaBHs9BogSDDKvDusll1e2ZSCJAvY--g3E5WtbH4vKtDW9ndGvnAs9KzQeJw
+@token = CfDJ8JWRgDF-IUFOr3yf65Vqxgjm7yiKg7Z5JaG7fJMueNtVIXN_0SPpbdLmI8oKWWfwyNCHsANudvn_cWV2v90yrGtISU37voprVWSE3-WkSCdpWDvEJDXWPEAe4fcw6IuLtNL-CAN2cfHpkfKz5BI7pOjUsNnfORxyxdvz8ALYFOX_IJyHbSjyAraC64Ib5l0JI-K_ORk90oR1CKwXQrJCXg033D8iNwmluJ4B9IkEL9v56DDnvrAufyQaia91Avka4tMrKjo-d2DaXM0Kmkg_qybqCufaANj0xc5wD0feLVVDdXp5ifO74XKPbDf1Co4AoWstaBNyipB1ABYPhJx_iMlZDEn3PXdhSjY7Wv5DsjuecFcFhIbBnN8764MfMourqzwX2vXgcWjEPl3nf8Vde2VhzTtIT_zlqZzzlnZsBVpic43dRSbCbr5n5lCnGoIwI6-FrPYIW0SeWdOhBUsjNE5gHXzhHbJmgx7vcCHj39h5jmyR3c17TFJwJibpXnYyULVnMl_qOh5qnje1MWrTZDVXlcvwI0QHOOzYVjp-77gqDJW9BxEEyJiENWMpMWFuAIQv5zJO520NVFVzVlXZX6Y3yM8dxlnl7kj9uQknILS7hG1pg6QCjtMRAI87ndZ_4JQl9FhmFknI2Wf3qyUHZKsi8P6HisMxGORTpRRjC34ZfTqRYBkRPd6L4-MyBr2q_UtlQhak1oQXYU_6bIpc4m0ir7LYgUQ4WCw_5oIaVev-7JCzSLy4VK9_O63qykKEpc_COh8g27cVxvSjgq5cj1mnCyBJPjwobn0cB_HLvFpP
 
 @Restaurant_API_Address= {{host}}:{{port}}
 
@@ -16,10 +16,11 @@ Accept: application/json
 ###
 
 POST {{Restaurant_API_Address}}/api/restaurants/create
+Authorization: Bearer {{token}}
 Content-Type: application/json
 
 {
-    "Name": "Canela Desayunos",
+    "Name": "Viva Mexico",
     "Description": "Delisious breakfast for everyonoe",
     "Category": "Mexican",
     "HasDelivery": true,
@@ -91,7 +92,7 @@ POST {{Restaurant_API_Address}}/api/identity/register
 Content-Type: application/json
 
 {
-  "email": "temo@gmail.com",
+  "email": "owner@gmail.com",
   "password": "Donadona21."
 }
 
@@ -100,8 +101,17 @@ POST {{Restaurant_API_Address}}/api/identity/login
 Content-Type: application/json
 
 {
-  "email": "temo@gmail.com",
+  "email": "admin@gmail.com",
   "password": "Donadona21."
 }
 
+###
 
+POST {{Restaurant_API_Address}}/api/identity/userRole
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "userEmail" : "temo@gmail.com",
+  "RoleName" : "owner"
+}

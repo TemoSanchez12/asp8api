@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Exceptions;
 
-namespace Restaurants.Application.Areas.Users.Commands;
+namespace Restaurants.Application.Areas.Users.Commands.UpdateUserDetails;
 
 public class UpdateUserDetailsCommandHandler(
     ILogger<UpdateUserDetailsCommandHandler> logger,

@@ -1230,3 +1230,27 @@ END
 SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Nationality], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
 FROM [AspNetUsers] AS [a]
 WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2024-07-15 21:13:15.619 -06:00 [WRN] Sensitive data logging is enabled. Log entries and exception messages may include sensitive application data; this mode should only be enabled during development.
+2024-07-15 21:13:15.680 -06:00 [WRN] The entity type 'Address' is an optional dependent using table sharing without any required non shared property that could be used to identify whether the entity exists. If all nullable properties contain a null value in database then an object instance won't be created in the query. Add a required property to create instances with null values for other properties or mark the incoming navigation as required to always create an instance.
+2024-07-15 21:13:15.687 -06:00 [WRN] No store type was specified for the decimal property 'Price' on entity type 'Dish'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values in 'OnModelCreating' using 'HasColumnType', specify precision and scale using 'HasPrecision', or configure a value converter using 'HasConversion'.
+2024-07-15 21:13:15.936 -06:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2024-07-15 21:13:16.055 -06:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Restaurants] AS [r]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-07-15 21:13:49.173 -06:00 [INF] Updating user: bf247aec-c39a-422c-bb12-3b2f8bdf6fdc, with {"DateOfBirth":"1999-11-24","Nationaltity":"mexican","$type":"UpdateUserDetailsCommand"}
+2024-07-15 21:13:49.267 -06:00 [INF] Executed DbCommand (22ms) [Parameters=[@__p_0='bf247aec-c39a-422c-bb12-3b2f8bdf6fdc' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[DateOfBirth], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[Nationality], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @__p_0
+2024-07-15 21:13:49.379 -06:00 [INF] Executed DbCommand (7ms) [Parameters=[@p16='bf247aec-c39a-422c-bb12-3b2f8bdf6fdc' (Nullable = false) (Size = 450), @p0='0', @p1='8d41a530-d82a-46ec-bfd9-9e3f097cd3fa' (Size = 4000), @p17='2b5bcf2d-24d9-415c-97da-1cf197975685' (Size = 4000), @p2='11/24/1999' (Nullable = true) (DbType = Date), @p3='temo@gmail.com' (Size = 256), @p4='False', @p5='True', @p6=NULL (DbType = DateTimeOffset), @p7='mexican' (Size = 4000), @p8='TEMO@GMAIL.COM' (Size = 256), @p9='TEMO@GMAIL.COM' (Size = 256), @p10='AQAAAAIAAYagAAAAEB80GDOCEmLluPQr//ibQJurWDA1Os5vnkSPykT8tMwGzubdLIws/wSeffo5q7WSwg==' (Size = 4000), @p11=NULL (Size = 4000), @p12='False', @p13='G4RQUIQ3NMLCVQG2JFKCNZ7JC25Q42YY' (Size = 4000), @p14='False', @p15='temo@gmail.com' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [DateOfBirth] = @p2, [Email] = @p3, [EmailConfirmed] = @p4, [LockoutEnabled] = @p5, [LockoutEnd] = @p6, [Nationality] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+OUTPUT 1
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+2024-07-15 21:13:49.392 -06:00 [INF] HTTP PUT /api/identity/user responded 200 in 262.3321 ms

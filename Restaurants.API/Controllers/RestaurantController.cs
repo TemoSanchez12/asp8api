@@ -7,6 +7,7 @@ using Restaurants.Application.Areas.Restaurants.Commands.UpdateRestaurant;
 using Restaurants.Application.Areas.Restaurants.Queries.GetAllRestaurants;
 using Restaurants.Application.Areas.Restaurants.Queries.GetRestaurantById;
 using Restaurants.Application.Definitions;
+using Restaurants.Domain.Constants;
 
 namespace Restaurants.API.Controllers;
 
@@ -40,6 +41,7 @@ public class RestaurantController : ControllerBase
     }
 
     [HttpPost("create")]
+    [Authorize(Roles = UserRoles.Owner)]
     public async Task<IActionResult> CreateRestaurant([FromBody] CreateRestaurantCommand command)
     {
         var id = await _mediator.Send(command);
