@@ -13,4 +13,6 @@ public class Restaurant
 
     public Address? Address { get; set; }
     public List<Dish> Dishes { get; set; } = new();
+    public User Owner { get; set; } = new();
+    public string OwnerId { get; set; } = string.Empty;
 }

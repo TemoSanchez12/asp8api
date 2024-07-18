@@ -18,6 +18,12 @@ public class ErrorHandlingMiddleware(ILogger<ErrorHandlingMiddleware> logger) : 
             await context.Response.WriteAsync(ex.Message);
 
         }
+        catch (ForbidException ex)
+        {
+            logger.LogError(ex, ex.Message);
+            context.Response.StatusCode = StatusCodes.Status403Forbidden;
+            await context.Response.WriteAsync(ex.Message);
+        }
         catch (Exception ex)
         {
             logger.LogError(ex, ex.Message);

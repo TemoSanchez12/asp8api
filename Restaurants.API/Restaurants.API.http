@@ -1,10 +1,10 @@
 @host = https://localhost
 @port = 7295
-@token = CfDJ8JWRgDF-IUFOr3yf65Vqxgjm7yiKg7Z5JaG7fJMueNtVIXN_0SPpbdLmI8oKWWfwyNCHsANudvn_cWV2v90yrGtISU37voprVWSE3-WkSCdpWDvEJDXWPEAe4fcw6IuLtNL-CAN2cfHpkfKz5BI7pOjUsNnfORxyxdvz8ALYFOX_IJyHbSjyAraC64Ib5l0JI-K_ORk90oR1CKwXQrJCXg033D8iNwmluJ4B9IkEL9v56DDnvrAufyQaia91Avka4tMrKjo-d2DaXM0Kmkg_qybqCufaANj0xc5wD0feLVVDdXp5ifO74XKPbDf1Co4AoWstaBNyipB1ABYPhJx_iMlZDEn3PXdhSjY7Wv5DsjuecFcFhIbBnN8764MfMourqzwX2vXgcWjEPl3nf8Vde2VhzTtIT_zlqZzzlnZsBVpic43dRSbCbr5n5lCnGoIwI6-FrPYIW0SeWdOhBUsjNE5gHXzhHbJmgx7vcCHj39h5jmyR3c17TFJwJibpXnYyULVnMl_qOh5qnje1MWrTZDVXlcvwI0QHOOzYVjp-77gqDJW9BxEEyJiENWMpMWFuAIQv5zJO520NVFVzVlXZX6Y3yM8dxlnl7kj9uQknILS7hG1pg6QCjtMRAI87ndZ_4JQl9FhmFknI2Wf3qyUHZKsi8P6HisMxGORTpRRjC34ZfTqRYBkRPd6L4-MyBr2q_UtlQhak1oQXYU_6bIpc4m0ir7LYgUQ4WCw_5oIaVev-7JCzSLy4VK9_O63qykKEpc_COh8g27cVxvSjgq5cj1mnCyBJPjwobn0cB_HLvFpP
+@token = CfDJ8JWRgDF-IUFOr3yf65VqxggO8wFq79oMeb0V0m1Ui_U08E7mM1ZsSswJlehQp3EaVadgiOsJhhygkVEf0HKqQOae1hyVsTC4AM4bTxqChnsd4h9jJb1Gvgeo1lMCKc_35cjoIwlKWItQKCwZ4k5sd5EQ1qIp2uT51gdjwePwH_s6ZsdPdYgsR6DRa8voLqYAePQWSoGJd0YAOXbZEW5_cBN0tifUGMBONeuebHPoYSIuyTpZmFVlV34e4UNhdI-s7UfBStz4THEY99rLsrgOZ2WOELnKZksO1Wl7x8MX7Z9lCI4VaxNZ5LN30BlSoj8JfTSM7g8Web29La7MqKi-2mSGOCz_QHONzfg0d7xdm646eY_4YjPXssfCsWgiApbVlMDQhZtFMmcoBD1BKfy82Ut1SrLvAgvQZQjGMjVH4IyrBHkYNnrf3dBzOAptKykYWxatdXiN0sqEfjwPwC7X0l5QEZnQRMFRTWlETOwyCB9FJO5YlgrtWc4FkTwc8u9gHBVVlUawn_Okpye9uvASlOOMXo15MHn-J7YHkmf9_hojiCxbbpVda2qSefHmJ569vcg_wxxXNVT2jA3hjNQD6el3BPPDbn9F5XDPZOBSUrQiHRlQD8te5UsUGKOFS5hfRJVIC4777pqub6tLhOAqqd0VaD4u98GeRlpAV2bknTzKNt7mmV7qBgJIUAvxr6ORqqJGjxd7fXqTZTqWVYCYLfoDIyOAm6pHcYuSdvAeqcQdVALTm8hmXHeL6GKxWfTxtxANyjePyI4gGcn_RZG-1fU2pk4ZeqtXtkgGWMN4oEoq
 
 @Restaurant_API_Address= {{host}}:{{port}}
 
-GET {{Restaurant_API_Address}}/api/restaurants
+GET {{Restaurant_API_Address}}/api/restaurants?pageNumber=1&pageSize=9&sortBy=Name&sortDirection=Descending
 Authorization: Bearer {{token}}
 Accept: application/json
 
@@ -31,15 +31,6 @@ Content-Type: application/json
     "PostalCode": "12345"
 }
 
-
-###
-
-POST {{Restaurant_API_Address}}/api/restaurants/create
-Content-Type: application/json
-
-{
-
-}
 
 ###
 
@@ -113,5 +104,5 @@ Authorization: Bearer {{token}}
 
 {
   "userEmail" : "temo@gmail.com",
-  "RoleName" : "owner"
+  "RoleName" : "Owner"
 }

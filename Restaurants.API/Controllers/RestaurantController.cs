@@ -8,6 +8,7 @@ using Restaurants.Application.Areas.Restaurants.Queries.GetAllRestaurants;
 using Restaurants.Application.Areas.Restaurants.Queries.GetRestaurantById;
 using Restaurants.Application.Definitions;
 using Restaurants.Domain.Constants;
+using Restaurants.Infrastructure.Authorization;
 
 namespace Restaurants.API.Controllers;
 
@@ -25,13 +26,14 @@ public class RestaurantController : ControllerBase
 
     [HttpGet]
     [AllowAnonymous]
-    public async Task<ActionResult<IEnumerable<RestaurantDefinition>>> GetAll()
+    public async Task<ActionResult> GetAll([FromQuery] GetAllRestaurantsQuery query)
     {
-        var restaurants = await _mediator.Send(new GetAllRestaurantsQuery());
-        return Ok(restaurants);
+        var pageResult = await _mediator.Send(query);
+        return Ok(pageResult);
     }
 
     [HttpGet("{restaurantId}")]
+    [Authorize(Policy = PolicyNames.HasNationality)]
     public async Task<ActionResult<RestaurantDefinition>> GetById([FromRoute] string restaurantId)
     {
         var restaurantGuid = Guid.Parse(restaurantId);

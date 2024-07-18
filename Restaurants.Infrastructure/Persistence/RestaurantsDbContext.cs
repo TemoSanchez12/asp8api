@@ -30,5 +30,10 @@ internal class RestaurantsDbContext : IdentityDbContext<User>
         modelBuilder.Entity<Restaurant>()
             .Property(r => r.Id)
             .ValueGeneratedOnAdd();
+
+        modelBuilder.Entity<User>()
+            .HasMany(o => o.OwnedRestaurants)
+            .WithOne(r => r.Owner)
+            .HasForeignKey(r => r.OwnerId);
     }
 }

@@ -1,8 +1,10 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using Restaurants.Domain.Constants;
 using Restaurants.Domain.Entities;
 using Restaurants.Domain.Repositories;
 using Restaurants.Infrastructure.Persistence;
+using System.Linq.Expressions;
 
 namespace Restaurants.Infrastructure.Repositories;
 
@@ -19,6 +21,38 @@ internal class RestaurantsRepository : IRestaurantsRepositoy
     {
         var restaurants = await _dbContext.Restaurants.ToListAsync();
         return restaurants;
+    }
+
+    public async Task<(IEnumerable<Restaurant>, int)> GetAllMatchingAsync(string? searchPhrase, int pageNumber, int pageSize, string? sortBy, SortDirection? sortDirection)
+    {
+        var searchPhraseLow = searchPhrase?.ToLower() ?? "";
+
+        var baseQuery = _dbContext.Restaurants
+            .Where(r => r.Name.ToLower().Contains(searchPhraseLow) || r.Description.ToLower().Contains(searchPhraseLow));
+
+        var totalCount = await baseQuery.CountAsync();
+
+        if (sortBy != null)
+        {
+
+            var columnsSelector = new Dictionary<string, Expression<Func<Restaurant, object>>>
+            {
+                { nameof(Restaurant.Name), restaurant => restaurant.Name },
+                { nameof(Restaurant.Category), restaurant => restaurant.Category},
+                { nameof(Restaurant.Description), restaurant => restaurant.Description},
+            };
+
+            var selectedColumn = columnsSelector[sortBy];
+
+            baseQuery = sortDirection == SortDirection.Ascending
+                ? baseQuery.OrderBy(selectedColumn)
+                : baseQuery.OrderByDescending(selectedColumn);
+        }
+
+
+        var restaurants = await baseQuery.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToListAsync();
+
+        return (restaurants, totalCount);
     }
 
     public async Task<Restaurant?> GetByIdAsync(Guid restaurantGuid)
@@ -65,5 +99,12 @@ internal class RestaurantsRepository : IRestaurantsRepositoy
 
         await _dbContext.SaveChangesAsync();
         return restaurantToUpdate;
+    }
+
+    public async Task<IEnumerable<Restaurant>> GetRestaurantByOwner(string ownerId)
+    {
+        var restaurants = await _dbContext.Restaurants.Where(res => res.OwnerId == ownerId).ToListAsync();
+
+        return restaurants;
     }
 }
